@@ -1,3 +1,8 @@
+#system files
+.DS_Store
+.idea/
+.tags*
+
 # dependencies
 node_modules
 
@@ -6,4 +11,4 @@ dist
 app/dist
 
 # logs
-npm-debug.log
+npm-debug.log*

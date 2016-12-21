@@ -14,11 +14,27 @@ export default [
     target: 'web',
     devtool: isProd ? '' : 'source-map',
     entry: {
-      renderer: './src/renderer/index.js',
+      renderer: [
+        './src/renderer/index.js',
+        'webpack-dev-server/client?http://0.0.0.0:4010',
+        'webpack/hot/only-dev-server',
+      ],
     },
     output: {
-      path: outputPath,
       filename: '[name].js',
+      publicPath: '/',
+    },
+    devServer: {
+      host: '0.0.0.0',
+      port: '4010',
+      contentBase: './src/renderer',
+      historyApiFallback: true,
+      stats: {
+        chunks: false,
+      },
+      proxy: {
+        '/api/*': 'http://107.170.52.153:4007/',
+      },
     },
     externals(context, request, callback) {
       let isExternal = false;
@@ -74,34 +90,8 @@ export default [
         disable: false,
         allChunks: true,
       }),
+      new webpack.HotModuleReplacementPlugin(),
       // new LiveReloadPlugin(),
-    ],
-  },
-  {
-    target: 'electron',
-    entry: {
-      main: './src/main/index.js',
-    },
-    output: {
-      path: outputPath,
-      filename: '[name].js',
-    },
-    externals(context, request, callback) {
-      callback(null, request.charAt(0) === '.' ? false : `require("${request}")`);
-    },
-    module: {
-      loaders: [
-        {
-          test: /\.js$/,
-          exclude: /node_modules/,
-          loader: 'babel-loader',
-        },
-      ],
-    },
-    plugins: [
-      new webpack.DefinePlugin({
-        $dirname: '__dirname',
-      }),
     ],
   },
 ];
