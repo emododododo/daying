@@ -1,6 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
-import LiveReloadPlugin from 'webpack-livereload-plugin';
+// import LiveReloadPlugin from 'webpack-livereload-plugin';
 import cssImport from 'postcss-import';
 import cssNested from 'postcss-nested';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
@@ -14,11 +14,27 @@ export default [
     target: 'web',
     devtool: isProd ? '' : 'source-map',
     entry: {
-      renderer: './src/renderer/index.js',
+      renderer: [
+        './src/renderer/index.js',
+        'webpack-dev-server/client?http://0.0.0.0:4010',
+        'webpack/hot/only-dev-server'
+      ],
     },
     output: {
       path: outputPath,
       filename: '[name].js',
+    },
+    devServer: {
+      host: '0.0.0.0',
+      port: '4010',
+      contentBase: './app',
+      historyApiFallback: true,
+      stats: {
+        chunks: false,
+      },
+      proxy: {
+        '/api/*': 'http://107.170.52.153:4007/',
+      },
     },
     externals(context, request, callback) {
       let isExternal = false;
@@ -74,7 +90,8 @@ export default [
         disable: false,
         allChunks: true,
       }),
-      new LiveReloadPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
+      // new LiveReloadPlugin(),
     ],
   },
   {
