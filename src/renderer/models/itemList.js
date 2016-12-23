@@ -5,34 +5,41 @@ export default {
   namespace: 'itemList',
 
   state: {
-    lists: [],
+    list: [],
+    queryName: '',
+    isLoadingList: false,
   },
   subscriptions: {
-    queryItemLists({dispatch}) {
+    queryItemLists({ dispatch }) {
       dispatch({
         type: 'query',
-        payload: 'dailyZhihu',
+        payload: {
+          isLoadingList: true,
+          queryName: 'dailyZhihu',
+          list: [],
+        },
       });
-      console.log(1111);
     },
   },
   effects: {
-    * query({ payload },{call, put}) {
-      const { data } = yield call( query );
+    * query({ payload }, { call, put }) {
+      const { data } = yield call(query, payload);
       if (data) {
         yield put({
           type: 'querySuccess',
           payload: {
+            isLoadingList: false,
+            queryName: 'dailyZhihu',
             list: data.data,
           },
         });
       }
-    }
+    },
   },
   reducers: {
-    querySuccess ( state, action ) {
-      return  {...state, ...action.payload };
-    }
+    querySuccess(state, action) {
+      return { ...state, ...action.payload };
+    },
   },
 
 };
