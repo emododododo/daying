@@ -1,16 +1,54 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'dva';
-import styles from './IndexPage.css';
 import List from '../components/list';
 import Nav from '../components/nav';
+import Webview from '../components/webview';
 
-function ListPage({ itemList }) {
-  return (
-    <div className={styles.normal}>
-      <Nav />
-      <List {...itemList} />
-    </div>
-  );
+class ListPage extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.dispatch = props.dispatch;
+    this.state = {
+      webviewCanGoBack: false,
+    };
+  }
+
+  render() {
+    const itemList = this.props.itemList;
+    const dispatch = this.props.dispatch;
+    const listProps = Object.assign({}, itemList, {
+      gotoUrl(e, url) {
+        e.preventDefault();
+        dispatch({
+          type: 'itemList/viewContent',
+          payload: {
+            url,
+          },
+        });
+      },
+    });
+    const navProps = {
+      onChangeTitle(title) {
+        dispatch({
+          type: 'itemList/query',
+          payload: {
+            isLoadingList: true,
+            queryName: title,
+            list: [],
+          },
+        });
+      },
+    };
+
+    return (
+      <div>
+        <Nav {...navProps} />
+        <List {...listProps} />
+        <Webview {...itemList} />
+      </div>
+    );
+  }
 }
 
 ListPage.propTypes = {
