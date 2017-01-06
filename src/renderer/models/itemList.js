@@ -23,6 +23,7 @@ export default {
   },
   effects: {
     * query({ payload }, { call, put }) {
+      yield put({ type: 'showLoading' });
       const { data } = yield call(query, payload);
       if (data) {
         yield put({
@@ -37,7 +38,13 @@ export default {
     },
   },
   reducers: {
+    showLoading(state) {
+      return { ...state, isLoadingList: true };
+    },
     querySuccess(state, action) {
+      return { ...state, ...action.payload };
+    },
+    viewContent(state, action) {
       return { ...state, ...action.payload };
     },
   },

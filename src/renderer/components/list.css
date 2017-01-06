@@ -1,0 +1,8 @@
+.list {
+  width: 200px;
+  height: calc(100% - 100px);
+  position: absolute;
+  left: 0;
+  top: 100px;
+  overflow: auto;
+}

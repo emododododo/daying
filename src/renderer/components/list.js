@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import styles from './list.css';
 
 function List(itemList) {
   if (itemList.isLoadingList) {
@@ -9,11 +10,16 @@ function List(itemList) {
     );
   }
   return (
-    <div>
+    <div className={styles.list}>
       <ul>
         {
           itemList.list.map((item, index) => {
-            return <li key={index}><a rel="noopener noreferrer" target="_blank" href={item.url}>{item.title}</a></li>;
+            return (
+              <li key={index}>
+                <a href={item.url} onClick={e => itemList.gotoUrl(e, item.url)}>
+                  {item.title}
+                </a>
+              </li>);
           })
         }
       </ul>
