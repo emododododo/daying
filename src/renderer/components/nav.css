@@ -1,0 +1,21 @@
+.title {
+  background: #000;
+}
+
+.list {
+  display: none;
+  position: absolute;
+  top: 20px;
+  z-index: 10;
+  background: #000;
+  color: #fff;
+}
+
+.list--active {
+  composes: list;
+  display: block;
+}
+
+.titleActive {
+
+}
