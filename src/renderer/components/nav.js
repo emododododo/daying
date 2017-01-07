@@ -5,28 +5,22 @@ const itemNav = [{
   title: '知乎日报',
   id: 'dailyZhihu',
 }, {
-  title: '简书',
-  id: 'jianshu',
-}, {
   title: '前端',
   id: 'qianduan',
 }, {
-  title: 'github',
-  id: 'github',
-}, {
-  title: 'cnblogs',
+  title: '博客园',
   id: 'cnblogs',
 }, {
   title: 'csdn',
   id: 'csdn',
 }, {
-  title: 'wanqu',
+  title: '湾区',
   id: 'wanqu',
 }, {
-  title: 'ithome',
+  title: 'IT之家',
   id: 'ithome',
 }, {
-  title: 'solidot',
+  title: 'solidot奇客',
   id: 'solidot',
 }];
 
@@ -49,6 +43,7 @@ class Nav extends React.Component {
   onChangeTitle(index) {
     this.setState({
       isSelected: index,
+      isFolded: !this.state.isFolded,
     });
     this.props.onChangeTitle(itemNav[index].id);
   }
@@ -56,23 +51,40 @@ class Nav extends React.Component {
   render() {
     const isSelected = this.state.isSelected;
     const isFolded = this.state.isFolded;
-    const listClassName = isFolded ? styles.list : styles['list--active'];
+
+    let listClassName = '';
+    let arrowActive = '';
+    let borderArrowActive = '';
+
+    if (!isFolded) {
+      listClassName = styles['list-wrapper--active'];
+      arrowActive = styles['arrow--active'];
+      borderArrowActive = styles['border-arrow--active'];
+    }
+
     const onClickWrapper = this.onClickWrapper.bind(this);
     const onChangeTitle = this.onChangeTitle.bind(this);
 
     return (
-      <div onClick={onClickWrapper}>
-        <p>{itemNav[isSelected].title}</p>
-        <ul className={listClassName}>
-          {
-            itemNav.map((item, index) => {
-              const onChange = () => {
-                onChangeTitle(index);
-              };
-              return <li key={index} onClick={onChange} ><a>{item.title}</a></li>;
-            })
-          }
-        </ul>
+      <div className={styles.nav}>
+        <div className={styles['title-wrapper']} onClick={onClickWrapper}>
+          <p className={styles.title}>{itemNav[isSelected].title}</p>
+          <img className={`${styles.arrow} ${arrowActive}`} src="../assets/arrow_down.png" alt="" />
+        </div>
+        <img className={`${styles['border-arrow']} ${borderArrowActive}`} src="../assets/modal_arrow.svg" alt="" />
+        <div className={`${styles['list-wrapper']} ${listClassName}`}>
+          <ul className={styles.list}>
+            {
+              itemNav.map((item, index) => {
+                const activeClass = isSelected === index ? styles['list-title-active'] : '';
+                const onChange = () => {
+                  onChangeTitle(index);
+                };
+                return <li className={`${styles['list-title']} ${activeClass}`} key={index} onClick={onChange} ><a>{item.title}</a></li>;
+              })
+            }
+          </ul>
+        </div>
       </div>
     );
   }

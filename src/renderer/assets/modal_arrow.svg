@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="12px" viewBox="0 0 18 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Desktop</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="1" y="0" width="250" height="1032"></rect>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="1" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.223137455 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M51.6057169,8.05429197 L0,8.05429197 L0,168.851908 L117,168.851908 L117,8.05429197 L67.7760385,8.05429197 L60.3982179,0.676471354 C60.0097635,0.288016902 59.3765223,0.283486648 58.9887451,0.671263775 L51.6057169,8.05429197 Z" id="path-3"></path>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-1" y="-1" width="119" height="170.469138">
+            <rect x="-1" y="-0.61723073" width="119" height="170.469138" fill="white"></rect>
+            <use xlink:href="#path-3" fill="black"></use>
+        </mask>
+        <path d="M51.6640242,9.64908719 L2,9.64908719 L2,166.707224 L115,166.707224 L115,9.64908719 L67.7918199,9.64908719 L60.439527,2.29679426 C60.0483167,1.90558397 59.4134297,1.89968162 59.0254838,2.28762755 L51.6640242,9.64908719 Z" id="path-5"></path>
+        <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="113" height="164.707224" fill="white">
+            <use xlink:href="#path-5"></use>
+        </mask>
+    </defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop" transform="translate(-118.000000, -40.000000)">
+            <g id="侧边栏">
+                <g id="Rectangle">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <text id="知乎" font-family="PingFangSC-Regular, PingFang SC" font-size="18" font-weight="normal" letter-spacing="0.692307711" fill="#717171">
+                    <tspan x="106" y="37">知乎</tspan>
+                </text>
+                <g id="侧边栏浮层" transform="translate(67.000000, 41.000000)">
+                    <g id="Combined-Shape">
+                        <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                        <use stroke="#BDBDBD" mask="url(#mask-4)" stroke-width="2" xlink:href="#path-3"></use>
+                    </g>
+                    <use id="Combined-Shape" stroke="#BDBDBD" mask="url(#mask-6)" stroke-width="2" stroke-linejoin="round" fill="#FFFFFF" xlink:href="#path-5"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

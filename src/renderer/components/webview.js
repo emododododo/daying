@@ -8,7 +8,7 @@ class Webview extends React.Component {
   constructor() {
     super();
     this.state = {
-      isLoading: false,
+      // isLoading: false,
       webviewCanGoBack: false,
     };
   }
@@ -21,15 +21,15 @@ class Webview extends React.Component {
       openExternal(e.url);
     });
 
-    webviewElement.addEventListener('will-navigate', () => {
-      this.setState({
-        isLoading: true,
-      });
-    });
+    // webviewElement.addEventListener('will-navigate', () => {
+    //   this.setState({
+    //     isLoading: true,
+    //   });
+    // });
 
     webviewElement.addEventListener('did-navigate', () => {
       this.setState({
-        isLoading: false,
+        // isLoading: false,
         webviewCanGoBack: webviewElement.canGoBack(),
       });
     });
@@ -41,14 +41,18 @@ class Webview extends React.Component {
 
   render() {
     const itemList = this.props;
-    const isLoading = this.state.isLoading;
-    const loadingClassName = isLoading ? styles['loading--active'] : '';
-
+    // const isLoading = this.state.isLoading;
+    // const loadingClassName = isLoading ? styles['loading--active'] : '';
+    const arrowActive = '';
     return (
       <div className={styles.wrapper}>
+        <div className={styles['webview-bar']}>
+          <img className={`${styles.goBack} ${arrowActive}`} src="../assets/arrow_left.png" alt="" />
+          <img className={`${styles.goForward} ${arrowActive}`} src="../assets/arrow_left.png" alt="" />
+          <img className={`${styles.reload} ${arrowActive}`} src="../assets/reload.png" alt="" />
+          <img className={`${styles.browser} ${arrowActive}`} src="../assets/browser.png" alt="" />
+        </div>
         <webview className={styles.webview} id="foo" src={itemList.url} />
-        <button className={styles.button} onClick={this.onGoBack}>back</button>
-        <div className={`${styles.loading} ${loadingClassName}`}>{isLoading}</div>
       </div>
     );
   }

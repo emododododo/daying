@@ -1,8 +1,27 @@
+@value textColor, hoverColor, gray from "../utils/variables.css";
+
 .list {
-  width: 200px;
-  height: calc(100% - 100px);
+  width: 100%;
+  height: calc(100% - 70px);
   position: absolute;
   left: 0;
-  top: 100px;
+  top: 70px;
   overflow: auto;
+  color: textColor;
+}
+
+.list-item {
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 12px;
+  padding: 6px 15px;
+  cursor: pointer;
+}
+
+.list-item:hover {
+  color: hoverColor;
+}
+
+.item--active {
+  background: gray;
 }

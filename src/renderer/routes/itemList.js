@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import List from '../components/list';
 import Nav from '../components/nav';
 import Webview from '../components/webview';
+import styles from './itemList.css';
 
 class ListPage extends React.Component {
 
@@ -43,8 +44,10 @@ class ListPage extends React.Component {
 
     return (
       <div>
-        <Nav {...navProps} />
-        <List {...listProps} />
+        <div className={styles['list-view']}>
+          <Nav {...navProps} />
+          <List {...listProps} />
+        </div>
         <Webview {...itemList} />
       </div>
     );

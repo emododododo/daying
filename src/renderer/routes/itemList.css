@@ -1,0 +1,9 @@
+.list-view {
+  width: 250px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  box-shadow: 1px 0 5px rgba(0, 0, 0, .22);
+}

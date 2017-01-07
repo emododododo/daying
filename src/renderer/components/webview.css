@@ -6,10 +6,17 @@
   right: 0;
 }
 
+.webview-bar {
+  position: relative;
+  width: 100%;
+  height: 60px;
+}
+
 .webview {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 60px);
   position: absolute;
+  top: 60px;
 }
 
 .button {
@@ -30,4 +37,31 @@
 
 .loading--active {
   display: block;
+}
+
+.goBack,
+.goForward,
+.reload,
+.browser {
+  height: 18px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.goBack {
+  left: 18px;
+}
+
+.goForward {
+  left: 44px;
+  transform: scaleX(-1) translateY(-50%);
+}
+
+.reload {
+  left: 70px;
+}
+
+.browser {
+  right: 18px;
 }

@@ -22,7 +22,7 @@ export default {
     },
   },
   effects: {
-    * query({ payload }, { call, put }) {
+    query: [function*({ payload }, { call, put }) {
       yield put({ type: 'showLoading' });
       const { data } = yield call(query, payload);
       if (data) {
@@ -33,9 +33,9 @@ export default {
             queryName: 'dailyZhihu',
             list: data.data,
           },
-        });
+        })
       }
-    },
+    }, { type: 'takeLatest' }],
   },
   reducers: {
     showLoading(state) {

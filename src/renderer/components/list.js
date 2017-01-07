@@ -1,30 +1,45 @@
 import React from 'react';
 import styles from './list.css';
+import Loading from './loading';
 
-function List(itemList) {
-  if (itemList.isLoadingList) {
+class List extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: -1,
+    };
+  }
+
+  onClickHandler(e, url, index) {
+    this.setState({
+      active: index,
+    });
+    this.props.gotoUrl(e, url);
+  }
+
+  render() {
+    const { isLoadingList, list } = this.props;
     return (
-      <div>
-        loading
-      </div>
+      <Loading isLoading={isLoadingList}>
+        <div className={styles.list}>
+          <ul>
+            {
+              list.map((item, index) => {
+                const classActive = this.state.active === index ? styles['item--active'] : '';
+                return (
+                  <li className={`${styles['list-item']} ${classActive}`} key={index}>
+                    <p onClick={e => this.onClickHandler(e, item.url, index)}>
+                      {item.title}
+                    </p>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </div>
+      </Loading>
     );
   }
-  return (
-    <div className={styles.list}>
-      <ul>
-        {
-          itemList.list.map((item, index) => {
-            return (
-              <li key={index}>
-                <a href={item.url} onClick={e => itemList.gotoUrl(e, item.url)}>
-                  {item.title}
-                </a>
-              </li>);
-          })
-        }
-      </ul>
-    </div>
-  );
 }
 
 export default List;

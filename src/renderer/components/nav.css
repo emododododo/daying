@@ -1,21 +1,94 @@
+@value textColor, borderColor, hoverColor, gray from "../utils/variables.css";
+
+.nav {
+  position: absolute;
+  height: 70px;
+  width: 100%;
+  text-align: center;
+  color: textColor;
+  z-index: 50;
+}
+
+.title-wrapper {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  cursor: pointer;
+}
+
+.arrow {
+  width: 12px;
+  height: 7px;
+  margin-left: 5px;
+}
+
+.arrow--active {
+  transform: scaleY(-1);
+}
+
 .title {
-  background: #000;
+  line-height: 25px;
+  font-size: 18px;
 }
 
 .list {
-  display: none;
+  background: #fff;
+  overflow: hidden;
+  margin: 0 auto;
+  border: 1px solid borderColor;
+}
+
+.list-title {
+  font-size: 14px;
+  line-height: 30px;
+  border-bottom: 1px solid borderColor;
+  cursor: pointer;
+}
+
+.list-title:last-child {
+  border-bottom: 0;
+}
+
+.list-title:hover {
+  color: hoverColor;
+}
+
+.list-title--active {
+  background: gray;
+}
+
+.border-arrow {
+  opacity: 0;
   position: absolute;
-  top: 20px;
+  top: 47px;
+  left: 50%;
+  z-index: 20;
+  transform: translateX(-50%);
+}
+
+.border-arrow--active {
+  opacity: 1;
+}
+
+.list-wrapper {
+  position: relative;
+  height: 0;
+  opacity: 0;
+  top: 55px;
   z-index: 10;
-  background: #000;
-  color: #fff;
+  margin: 0 auto;
+  width: 120px;
+  padding: 2px;
+  background: #fff;
+  border: 1px solid borderColor;
+  overflow: hidden;
 }
 
-.list--active {
-  composes: list;
-  display: block;
-}
-
-.titleActive {
-
+.list-wrapper--active {
+  opacity: 1;
+  height: auto;
 }
