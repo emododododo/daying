@@ -8,8 +8,8 @@ class Webview extends React.Component {
   constructor() {
     super();
     this.state = {
-      // isLoading: false,
-      webviewCanGoBack: false,
+      canGoBack: false,
+      canGoForward: false,
     };
   }
 
@@ -21,38 +21,62 @@ class Webview extends React.Component {
       openExternal(e.url);
     });
 
-    // webviewElement.addEventListener('will-navigate', () => {
-    //   this.setState({
-    //     isLoading: true,
-    //   });
-    // });
-
     webviewElement.addEventListener('did-navigate', () => {
       this.setState({
-        // isLoading: false,
-        webviewCanGoBack: webviewElement.canGoBack(),
+        canGoBack: webviewElement.canGoBack(),
+        canGoForward: webviewElement.canGoForward(),
       });
     });
 
     this.onGoBack = () => {
       webviewElement.goBack();
     };
+
+    this.onGoForward = () => {
+      webviewElement.goForward();
+    };
+
+    this.onReload = () => {
+      webviewElement.reload();
+    };
+  }
+
+  componentWillReceiveProps() {
+    const webviewElement = document.getElementById('foo');
+    this.setState({
+      canGoBack: webviewElement.canGoBack(),
+    });
+  }
+
+  onBrowser() {
+    const url = this.props.url;
+    if (url && url !== '#') {
+      openExternal(url);
+    }
   }
 
   render() {
     const itemList = this.props;
-    // const isLoading = this.state.isLoading;
-    // const loadingClassName = isLoading ? styles['loading--active'] : '';
-    const arrowActive = '';
+    const url = itemList.url || '#';
+    const goBackClassNames = this.state.canGoBack ? `${styles.goBack} ${styles.canGoBack}` : styles.goBack;
+    const goForwardClassNames = this.state.canGoForward ? `${styles.goForward} ${styles.canGoForward}` : styles.goForward;
+    let reloadClassNames = styles.reload;
+    let browserClassNames = styles.browser;
+    const onBrowser = this.onBrowser.bind(this);
+    if (url && url !== '#') {
+      reloadClassNames = `${styles.reload} ${styles['icon-active']}`;
+      browserClassNames = `${styles.browser} ${styles['icon-active']}`;
+    }
+
     return (
       <div className={styles.wrapper}>
         <div className={styles['webview-bar']}>
-          <img className={`${styles.goBack} ${arrowActive}`} src="../assets/arrow_left.png" alt="" />
-          <img className={`${styles.goForward} ${arrowActive}`} src="../assets/arrow_left.png" alt="" />
-          <img className={`${styles.reload} ${arrowActive}`} src="../assets/reload.png" alt="" />
-          <img className={`${styles.browser} ${arrowActive}`} src="../assets/browser.png" alt="" />
+          <a onClick={this.onGoBack} className={styles['goBack-wrapper']}><img className={goBackClassNames} src="../assets/arrow_left.png" alt="" /></a>
+          <a onClick={this.onGoForward} className={styles['goForward-wrapper']}><img className={goForwardClassNames} src="../assets/arrow_left.png" alt="" /></a>
+          <a onClick={this.onReload} className={styles['reload-wrapper']}><img className={reloadClassNames} src="../assets/reload.png" alt="" /></a>
+          <a onClick={onBrowser} className={styles['browser-wrapper']}><img className={browserClassNames} src="../assets/browser.png" alt="" /></a>
         </div>
-        <webview className={styles.webview} id="foo" src={itemList.url} />
+        <webview className={styles.webview} id="foo" src={url} />
       </div>
     );
   }

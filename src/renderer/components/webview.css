@@ -44,24 +44,42 @@
 .reload,
 .browser {
   height: 18px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.goBack {
-  left: 18px;
+  opacity: .4;
 }
 
 .goForward {
-  left: 44px;
-  transform: scaleX(-1) translateY(-50%);
+  transform: scaleX(-1);
 }
 
-.reload {
+.goBack-wrapper,
+.goForward-wrapper,
+.reload-wrapper,
+.browser-wrapper {
+  height: 18px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.goBack-wrapper {
+  left: 18px;
+}
+
+.goForward-wrapper {
+  left: 44px;
+}
+
+.reload-wrapper {
   left: 70px;
 }
 
-.browser {
+.browser-wrapper {
   right: 18px;
+}
+
+.canGoBack,
+.canGoForward,
+.icon-active {
+  opacity: 1;
 }
