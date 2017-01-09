@@ -1,6 +1,9 @@
 import React from 'react';
 import styles from './nav.css';
 
+const modalArrow = require('../assets/modal_arrow.svg');
+const arrowDown = require('../assets/arrow_down.png');
+
 const itemNav = [{
   title: '知乎日报',
   id: 'dailyZhihu',
@@ -69,9 +72,9 @@ class Nav extends React.Component {
       <div className={styles.nav}>
         <div className={styles['title-wrapper']} onClick={onClickWrapper}>
           <p className={styles.title}>{itemNav[isSelected].title}</p>
-          <img className={`${styles.arrow} ${arrowActive}`} src="../assets/arrow_down.png" alt="" />
+          <img className={`${styles.arrow} ${arrowActive}`} src={arrowDown} alt="" />
         </div>
-        <img className={`${styles['border-arrow']} ${borderArrowActive}`} src="../assets/modal_arrow.svg" alt="" />
+        <img className={`${styles['border-arrow']} ${borderArrowActive}`} src={modalArrow} alt="" />
         <div className={`${styles['list-wrapper']} ${listClassName}`}>
           <ul className={styles.list}>
             {

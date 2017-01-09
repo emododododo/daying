@@ -2,6 +2,9 @@ import React from 'react';
 import styles from './webview.css';
 
 const openExternal = require('electron').remote.shell.openExternal;
+const arrowLeft = require('../assets/arrow_left.png');
+const reload = require('../assets/reload.png');
+const browser = require('../assets/browser.png');
 
 class Webview extends React.Component {
 
@@ -71,10 +74,10 @@ class Webview extends React.Component {
     return (
       <div className={styles.wrapper}>
         <div className={styles['webview-bar']}>
-          <a onClick={this.onGoBack} className={styles['goBack-wrapper']}><img className={goBackClassNames} src="../assets/arrow_left.png" alt="" /></a>
-          <a onClick={this.onGoForward} className={styles['goForward-wrapper']}><img className={goForwardClassNames} src="../assets/arrow_left.png" alt="" /></a>
-          <a onClick={this.onReload} className={styles['reload-wrapper']}><img className={reloadClassNames} src="../assets/reload.png" alt="" /></a>
-          <a onClick={onBrowser} className={styles['browser-wrapper']}><img className={browserClassNames} src="../assets/browser.png" alt="" /></a>
+          <a onClick={this.onGoBack} className={styles['goBack-wrapper']}><img className={goBackClassNames} src={arrowLeft} alt="" /></a>
+          <a onClick={this.onGoForward} className={styles['goForward-wrapper']}><img className={goForwardClassNames} src={arrowLeft} alt="" /></a>
+          <a onClick={this.onReload} className={styles['reload-wrapper']}><img className={reloadClassNames} src={reload} alt="" /></a>
+          <a onClick={onBrowser} className={styles['browser-wrapper']}><img className={browserClassNames} src={browser} alt="" /></a>
         </div>
         <webview className={styles.webview} id="foo" src={url} />
       </div>
