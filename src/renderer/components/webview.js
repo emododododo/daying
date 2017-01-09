@@ -60,7 +60,7 @@ class Webview extends React.Component {
 
   render() {
     const itemList = this.props;
-    const url = itemList.url || '#';
+    const url = itemList.url || (itemList.list[0] && itemList.list[0].url) || '#';
     const goBackClassNames = this.state.canGoBack ? `${styles.goBack} ${styles.canGoBack}` : styles.goBack;
     const goForwardClassNames = this.state.canGoForward ? `${styles.goForward} ${styles.canGoForward}` : styles.goForward;
     let reloadClassNames = styles.reload;
