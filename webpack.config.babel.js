@@ -52,7 +52,7 @@ export default [
           ),
         },
         {
-          test: /\.(png|jpg|jpeg|gif)(\?v=\d+\.\d+\.\d+)?$/i,
+          test: /\.(png|jpg|jpeg|gif|svg)(\?v=\d+\.\d+\.\d+)?$/i,
           loader: 'url-loader?limit=10000',
         },
       ],
