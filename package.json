@@ -15,7 +15,12 @@
     "rebuild": "electron-rebuild -m ./app/node_modules",
     "pack": "npm run build && npm run rebuild && build",
     "pack:dir": "npm run build && npm run rebuild && build --dir",
-    "pack:justBuild": "build --dir"
+    "pack:justBuild": "build --dir",
+    "build:linux32": "electron-packager ./ dayang --platform=linux --arch=ia32  --overwrite --out ./dist/$npm_package_version --version=0.37.8 --ignore='(.github|.DS_Store)'",
+    "build:linux64": "electron-packager ./ dayang --platform=linux --arch=x64  --overwrite --out ./dist/$npm_package_version --version=0.37.8 --ignore='(.github|.DS_Store)'",
+    "build:mac": "electron-packager ./ dayang --platform=darwin --arch=x64  --overwrite --out ./dist/$npm_package_version --version=0.37.8 --ignore='(.github|.DS_Store)'",
+    "build:win32": "electron-packager ./ dayang --platform=win32 --arch=ia32  --overwrite --out ./dist --version=0.37.8 --ignore=.github",
+    "build:win64": "electron-packager ./ dayang --platform=win32 --arch=x64  --overwrite --out ./dist --version=0.37.8 --ignore=.github"
   },
   "build": {
     "appId": "com.sorrycc.dva-boilerplate",
@@ -57,14 +62,14 @@
     "postcss-import": "^8.2.0",
     "postcss-loader": "^1.1.1",
     "postcss-nested": "^1.0.0",
+    "qs": "^6.2.0",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
-    "webpack-livereload-plugin": "^0.9.0",
-    "webpack-dev-server" : "1.16.2",
-    "qs": "^6.2.0"
+    "webpack-dev-server": "1.16.2",
+    "webpack-livereload-plugin": "^0.9.0"
   },
   "license": "MIT"
 }
