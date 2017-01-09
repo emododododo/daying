@@ -79,7 +79,7 @@ class Nav extends React.Component {
           <ul className={styles.list}>
             {
               itemNav.map((item, index) => {
-                const activeClass = isSelected === index ? styles['list-title-active'] : '';
+                const activeClass = isSelected === index ? styles['list-title--active'] : '';
                 const onChange = () => {
                   onChangeTitle(index);
                 };
