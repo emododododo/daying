@@ -1,12 +1,12 @@
 {
-  "name": "dva-boilerplate-electron",
+  "name": "DaYang",
   "version": "0.1.0",
-  "productName": "Boilerplate",
+  "productName": "DaYang",
   "description": "Yet another boilerplate for dva.",
   "main": "dist/main.js",
   "author": {
-    "name": "chencheng",
-    "email": "sorrycc@gmail.com"
+    "name": "smacgg&emodo",
+    "email": "xysmackdown@gmail.com"
   },
   "dependencies": {
     "electron-config": "^0.2.1",
