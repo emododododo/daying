@@ -1,8 +1,9 @@
 {
   "private": true,
+  "version": "0.0.1",
   "author": {
-    "name": "chencheng",
-    "email": "sorrycc@gmail.com"
+    "name": "smacgg&emodo",
+    "email": "xysmackdown@gmail.com"
   },
   "scripts": {
     "start": "electron app/dist/main",
@@ -15,15 +16,10 @@
     "rebuild": "electron-rebuild -m ./app/node_modules",
     "pack": "npm run build && npm run rebuild && build",
     "pack:dir": "npm run build && npm run rebuild && build --dir",
-    "pack:justBuild": "build --dir",
-    "build:linux32": "electron-packager ./ dayang --platform=linux --arch=ia32  --overwrite --out ./dist/$npm_package_version --version=0.37.8 --ignore='(.github|.DS_Store)'",
-    "build:linux64": "electron-packager ./ dayang --platform=linux --arch=x64  --overwrite --out ./dist/$npm_package_version --version=0.37.8 --ignore='(.github|.DS_Store)'",
-    "build:mac": "electron-packager ./ dayang --platform=darwin --arch=x64  --overwrite --out ./dist/$npm_package_version --version=0.37.8 --ignore='(.github|.DS_Store)'",
-    "build:win32": "electron-packager ./ dayang --platform=win32 --arch=ia32  --overwrite --out ./dist --version=0.37.8 --ignore=.github",
-    "build:win64": "electron-packager ./ dayang --platform=win32 --arch=x64  --overwrite --out ./dist --version=0.37.8 --ignore=.github"
+    "pack:justBuild": "build --dir"
   },
   "build": {
-    "appId": "com.sorrycc.dva-boilerplate",
+    "appId": "com.dayang.dva-boilerplate",
     "category": "public.app-category.developer-tools",
     "asar": false
   },
