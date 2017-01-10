@@ -10,6 +10,13 @@ class List extends React.Component {
     };
   }
 
+  shouldComponentUpdate() {
+    this.setState({
+      active: 0,
+    });
+    return true;
+  }
+
   onClickHandler(e, url, index) {
     this.setState({
       active: index,
