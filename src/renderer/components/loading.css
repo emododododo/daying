@@ -32,13 +32,13 @@
 }
 
 .right {
-	background: #6cc88a;
+	background: #FF8A80;
 	transform: translateX(-20px);
 	animation: moveRight 0.6s linear infinite alternate;
 }
 
 .left {
-	background: #4fc3f7;
+	background: #40C4FF;
 	transform: translateX(20px);
 	animation: moveLeft 0.6s linear infinite alternate;
 }
@@ -53,7 +53,6 @@
 
 .loading .children{
   filter: blur(1px);
-  opacity: 0.7;
 }
 
 .loading .left,
