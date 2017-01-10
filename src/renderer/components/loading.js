@@ -4,7 +4,7 @@ import styles from './loading.css';
 function Loading(props) {
   const loadingClass = props.isLoading ? styles.loading : '';
   return (
-    <div className={`${styles.wrapper} ${loadingClass}`}>
+    <div className={`${styles.wrapper} ${loadingClass} ${props.className}`}>
       <div className={styles.children}>
         {props.children}
       </div>
