@@ -32,8 +32,9 @@ export default {
             isLoadingList: false,
             queryName: 'dailyZhihu',
             list: data.data,
+            url: data.data[0].url,
           },
-        })
+        });
       }
     }, { type: 'takeLatest' }],
   },
