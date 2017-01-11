@@ -1,7 +1,7 @@
 {
-  "name": "DaYang",
+  "name": "大鹰",
   "version": "0.1.0",
-  "productName": "DaYang",
+  "productName": "大鹰",
   "description": "Yet another boilerplate for dva.",
   "main": "dist/main.js",
   "author": {
