@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './webview.css';
-import Loading from './loading';
 
 const openExternal = require('electron').remote.shell.openExternal;
 const arrowLeft = require('../assets/arrow_left.png');
@@ -90,10 +89,10 @@ class Webview extends React.Component {
   componentWillReceiveProps(nextProps) {
     const webviewElement = document.getElementById('foo');
     webviewElement.clearHistory();
-    webviewElement.loadURL(nextProps.url);
     this.setState({
       canGoBack: webviewElement.canGoBack(),
     });
+    webviewElement.loadURL(nextProps.url);
   }
 
   onBrowser() {
@@ -111,10 +110,11 @@ class Webview extends React.Component {
     const reloadClassNames = `${styles.reload} ${styles['icon-active']}`;
     const browserClassNames = `${styles.browser} ${styles['icon-active']}`;
 
+    const wrapperClassNames = this.state.isLoading ? `${styles.wrapper} ${styles.isLoading}` : styles.wrapper;
     const onBrowser = this.onBrowser.bind(this);
 
     return (
-      <Loading className={styles.wrapper} isLoading={this.state.isLoading}>
+      <div className={wrapperClassNames}>
         <div className={styles['webview-bar']}>
           <a onClick={this.onGoBack} className={styles['goBack-wrapper']}><img className={goBackClassNames} src={arrowLeft} alt="" /></a>
           <a onClick={this.onGoForward} className={styles['goForward-wrapper']}><img className={goForwardClassNames} src={arrowLeft} alt="" /></a>
@@ -128,7 +128,7 @@ class Webview extends React.Component {
             <span>出现错误 {this.state.errorCode}</span>
           </div>
         </div>
-      </Loading>
+      </div>
     );
   }
 }

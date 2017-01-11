@@ -51,7 +51,7 @@
 	to { transform: translateX(-20px); }
 }
 
-.loading .children{
+.loading .children {
   filter: blur(1px);
 }
 

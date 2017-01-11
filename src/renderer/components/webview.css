@@ -118,3 +118,18 @@
   font-size: 14px;
   color: textColor;
 }
+
+.isLoading .reload {
+  animation: isLoading 1s linear infinite;
+  transform-origin: 9px 9px;
+}
+
+@keyframes isLoading {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
