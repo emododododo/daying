@@ -1,6 +1,9 @@
 import { Menu } from 'electron';
 import log from 'electron-log';
+import * as application from './application';
 
+let editPageWin = '';
+let editPageTogle = false;
 function getTemplate() {
   return [
     {
@@ -14,15 +17,20 @@ function getTemplate() {
       ],
     },
     {
-      label: 'Edit',
+      label: '配置',
       submenu: [
-        { role: 'undo' },
-        { role: 'redo' },
-        { type: 'separator' },
-        { role: 'cut' },
-        { role: 'copy' },
-        { role: 'paste' },
-        { role: 'selectall' },
+        {
+          label: '配置',
+          click: () => {
+            // 开关配置页面
+            if (editPageTogle) {
+              editPageWin.close();
+            } else {
+              editPageWin = application.editPage();
+            }
+            editPageTogle = !editPageTogle;
+          },
+        },
       ],
     },
     {

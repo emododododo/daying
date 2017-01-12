@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import is from 'electron-is';
 import { join } from 'path';
 import log from 'electron-log';
@@ -17,8 +17,15 @@ if (is.dev()) {
 
 app.on('ready', () => {
   log.info('(main/index) app ready');
-  application.init();
+  const mainWin = application.init();
   menu.init();
+
+  // 监听配置页面
+  ipcMain.on('sync-EditPage', (event) => {
+    const result = event;
+    mainWin.reload();
+    result.returnValue = '配置更新成功';
+  });
 
   // 加载 devtools extension
   if (is.dev()) {
