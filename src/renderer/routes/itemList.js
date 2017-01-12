@@ -16,8 +16,7 @@ class ListPage extends React.Component {
   }
 
   render() {
-    const itemList = this.props.itemList;
-    const dispatch = this.props.dispatch;
+    const { itemList, dispatch } = this.props;
     const listProps = Object.assign({}, itemList, {
       gotoUrl(e, url) {
         e.preventDefault();
@@ -30,6 +29,7 @@ class ListPage extends React.Component {
       },
     });
     const navProps = {
+      dataList: itemList.dataList,
       onChangeTitle(title) {
         dispatch({
           type: 'itemList/query',
