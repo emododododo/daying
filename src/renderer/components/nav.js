@@ -4,28 +4,28 @@ import styles from './nav.css';
 const modalArrow = require('../assets/modal_arrow.svg');
 const arrowDown = require('../assets/arrow_down.png');
 
-const itemNav = [{
-  title: '知乎日报',
-  id: 'dailyZhihu',
-}, {
-  title: '前端',
-  id: 'qianduan',
-}, {
-  title: '博客园',
-  id: 'cnblogs',
-}, {
-  title: 'csdn',
-  id: 'csdn',
-}, {
-  title: '湾区',
-  id: 'wanqu',
-}, {
-  title: 'IT之家',
-  id: 'ithome',
-}, {
-  title: 'solidot奇客',
-  id: 'solidot',
-}];
+// const dataList = [{
+//   title: '知乎日报',
+//   id: 'dailyZhihu',
+// }, {
+//   title: '前端',
+//   id: 'qianduan',
+// }, {
+//   title: '博客园',
+//   id: 'cnblogs',
+// }, {
+//   title: 'csdn',
+//   id: 'csdn',
+// }, {
+//   title: '湾区',
+//   id: 'wanqu',
+// }, {
+//   title: 'IT之家',
+//   id: 'ithome',
+// }, {
+//   title: 'solidot奇客',
+//   id: 'solidot',
+// }];
 
 class Nav extends React.Component {
   constructor(props) {
@@ -48,13 +48,13 @@ class Nav extends React.Component {
       isSelected: index,
       isFolded: !this.state.isFolded,
     });
-    this.props.onChangeTitle(itemNav[index].id);
+    this.props.onChangeTitle(this.props.dataList[index].id);
   }
 
   render() {
     const isSelected = this.state.isSelected;
     const isFolded = this.state.isFolded;
-
+    const dataList = this.props.dataList;
     let listClassName = '';
     let arrowActive = '';
     let borderArrowActive = '';
@@ -71,14 +71,14 @@ class Nav extends React.Component {
     return (
       <div className={styles.nav}>
         <div className={styles['title-wrapper']} onClick={onClickWrapper}>
-          <p className={styles.title}>{itemNav[isSelected].title}</p>
+          <p className={styles.title}>{dataList[isSelected].title}</p>
           <img className={`${styles.arrow} ${arrowActive}`} src={arrowDown} alt="" />
         </div>
         <img className={`${styles['border-arrow']} ${borderArrowActive}`} src={modalArrow} alt="" />
         <div className={`${styles['list-wrapper']} ${listClassName}`}>
           <ul className={styles.list}>
             {
-              itemNav.map((item, index) => {
+              dataList.map((item, index) => {
                 const activeClass = isSelected === index ? styles['list-title--active'] : '';
                 const onChange = () => {
                   onChangeTitle(index);
