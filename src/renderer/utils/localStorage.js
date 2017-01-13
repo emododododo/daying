@@ -15,7 +15,7 @@ function resetStorage(name) {
   const storage = window.localStorage.getItem(name);
 
   if (storage) {
-    storage.removeItem(name);
+    window.localStorage.removeItem(name);
   }
 }
 
