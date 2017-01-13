@@ -4,7 +4,7 @@ import styles from './nav.css';
 const modalArrow = require('../assets/modal_arrow.svg');
 const arrowDown = require('../assets/arrow_down.png');
 
-// const dataList = [{
+// const navList = [{
 //   title: '知乎日报',
 //   id: 'dailyZhihu',
 // }, {
@@ -48,13 +48,14 @@ class Nav extends React.Component {
       isSelected: index,
       isFolded: !this.state.isFolded,
     });
-    this.props.onChangeTitle(this.props.dataList[index].id);
+    this.props.onChangeTitle(this.props.navList[index].id);
   }
 
   render() {
     const isSelected = this.state.isSelected;
     const isFolded = this.state.isFolded;
-    const dataList = this.props.dataList;
+    const navList = this.props.navList;
+    console.log(this.props);
     let listClassName = '';
     let arrowActive = '';
     let borderArrowActive = '';
@@ -71,14 +72,14 @@ class Nav extends React.Component {
     return (
       <div className={styles.nav}>
         <div className={styles['title-wrapper']} onClick={onClickWrapper}>
-          <p className={styles.title}>{dataList[isSelected].title}</p>
+          <p className={styles.title}>{navList[isSelected].title}</p>
           <img className={`${styles.arrow} ${arrowActive}`} src={arrowDown} alt="" />
         </div>
         <img className={`${styles['border-arrow']} ${borderArrowActive}`} src={modalArrow} alt="" />
         <div className={`${styles['list-wrapper']} ${listClassName}`}>
           <ul className={styles.list}>
             {
-              dataList.map((item, index) => {
+              navList.map((item, index) => {
                 const activeClass = isSelected === index ? styles['list-title--active'] : '';
                 const onChange = () => {
                   onChangeTitle(index);

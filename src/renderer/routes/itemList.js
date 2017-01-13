@@ -29,7 +29,7 @@ class ListPage extends React.Component {
       },
     });
     const navProps = {
-      dataList: itemList.dataList,
+      navList: itemList.navList,
       onChangeTitle(title) {
         dispatch({
           type: 'itemList/query',

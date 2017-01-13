@@ -1,28 +1,61 @@
 import { query } from '../services/list';
-import { getStorage, setStorage, resetStorage } from '../utils/localStorage'
+import { getStorage, setStorage } from '../utils/localStorage';
+
 const ipcRenderer = require('electron').ipcRenderer;
 
-const dataList = getStorage('selectedData').dataList;
-// const dataList = [{
-//   title: '知乎日报',
-//   id: 'dailyZhihu',
-// },
-// {
-//   title: '博客园',
-//   id: 'cnblogs',
-// }, {
-//   title: 'csdn',
-//   id: 'csdn',
-// }, {
-//   title: '湾区',
-//   id: 'wanqu',
-// }, {
-//   title: 'IT之家',
-//   id: 'ithome',
-// }, {
-//   title: 'solidot奇客',
-//   id: 'solidot',
-// }];
+let navList = [{
+  title: '知乎日报-每日',
+  id: 'dailyZhihu',
+},
+{
+  title: '博客园',
+  id: 'cnblogs',
+}, {
+  title: 'csdn',
+  id: 'csdn',
+}, {
+  title: '湾区',
+  id: 'wanqu',
+}, {
+  title: 'IT之家',
+  id: 'ithome',
+}, {
+  title: 'solidot奇客',
+  id: 'solidot',
+}];
+
+let allNavList = [{
+  title: '知乎日报-每日',
+  id: 'dailyZhihu',
+},
+{
+  title: '博客园',
+  id: 'cnblogs',
+}, {
+  title: 'csdn',
+  id: 'csdn',
+}, {
+  title: '湾区',
+  id: 'wanqu',
+}, {
+  title: 'IT之家',
+  id: 'ithome',
+}, {
+  title: 'solidot奇客',
+  id: 'solidot',
+}];
+
+// Read selectedNavList for localStorage
+if (getStorage('selectedNavList') && getStorage('selectedNavList').length > 0) {
+  navList = getStorage('selectedNavList');
+} else {
+  setStorage('selectedNavList', navList);
+}
+
+// Read allNavList for localStorage
+if (getStorage('allNavList') && getStorage('allNavList').length > 0) {
+  allNavList = getStorage('allNavList');
+}
 
 export default {
 
@@ -32,7 +65,8 @@ export default {
     list: [],
     queryName: '',
     isLoadingList: false,
-    dataList,
+    navList,
+    allNavList,
   },
   subscriptions: {
     queryItemLists({ dispatch }) {
@@ -40,14 +74,24 @@ export default {
         type: 'query',
         payload: {
           isLoadingList: true,
-          queryName: dataList[0].id,
+          queryName: navList[0].id,
           list: [],
         },
       });
     },
+    getListHandler({ dispatch }) {
+      if (!getStorage('allNavList')) {
+        dispatch({
+          type: 'updateAllNavList',
+          payload: {
+            queryName: 'getList',
+          },
+        });
+      }
+    },
   },
   effects: {
-    query: [function*({ payload }, { call, put }) {
+    query: [function* handler({ payload }, { call, put }) {
       yield put({ type: 'showLoading' });
       const { data } = yield call(query, payload);
       if (data) {
@@ -58,6 +102,17 @@ export default {
             queryName: 'dailyZhihu',
             list: data.data,
             url: data.data[0].url,
+          },
+        });
+      }
+    }, { type: 'takeLatest' }],
+    updateAllNavList: [function* handler({ payload }, { call, put }) {
+      const { data } = yield call(query, payload);
+      if (data) {
+        yield put({
+          type: 'updateAllNavListSuccess',
+          payload: {
+            allNavList: data.list,
           },
         });
       }
@@ -73,12 +128,41 @@ export default {
     viewContent(state, action) {
       return { ...state, ...action.payload };
     },
-    updateDataList(state, action) {
+    updateNavList(state, action) {
       // 同步刷新主窗口事件。
-      setStorage('selectedData', action.payload);
+      setStorage('selectedNavList', action.payload.navList);
       ipcRenderer.sendSync('sync-EditPage');
       return { ...state, ...action.payload };
     },
-  },
+    updateAllNavListSuccess(state, action) {
+      // 剔除选中列表中不存在的nav
+      const allNavListObj = action.payload.allNavList.reduce((obj, item) => {
+        const result = obj;
 
+        if (item.data && item.data.length > 0) {
+          const dataObj = item.data.reduce((objI, itemI) => {
+            const resultI = objI;
+            resultI[itemI.id] = itemI.id;
+            return resultI;
+          });
+          return Object.assign({}, result, dataObj);
+        }
+
+        result[item.id] = item.id;
+        return result;
+      }, {});
+
+      const newNavList = navList.reduce((arr, item) => {
+        const result = arr;
+        if (allNavListObj[item.id]) {
+          result.push(item);
+        }
+        return result;
+      }, []);
+      setStorage('selectedNavList', newNavList);
+
+      setStorage('allNavList', action.payload.allNavList);
+      return { ...state, ...Object.assign({}, state, { allNavList: action.payload.allNavList }) };
+    },
+  },
 };
