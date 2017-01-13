@@ -95,13 +95,19 @@ export default {
       yield put({ type: 'showLoading' });
       const { data } = yield call(query, payload);
       if (data) {
+        let list = [];
+        let url = '#';
+        if (data.data && data.data.length > 0) {
+          list = data.data;
+          url = data.data[0].url;
+        }
         yield put({
           type: 'querySuccess',
           payload: {
             isLoadingList: false,
             queryName: 'dailyZhihu',
-            list: data.data,
-            url: data.data[0].url,
+            list,
+            url,
           },
         });
       }
