@@ -1,6 +1,6 @@
 # app
 
-> My superb app
+> My superb app (DaYing)
 
 ## Dev
 
