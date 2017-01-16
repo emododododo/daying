@@ -6,10 +6,18 @@ let count = 0;
 
 export function create(opts) {
   count += 1;
-  let win = new BrowserWindow(opts);
+
+  const options = opts;
+  const title = options.title;
+
+  delete options.title;
+  let win = new BrowserWindow(options);
   win.on('close', () => {
     count -= 1;
     win = null;
+  });
+  win.webContents.on('did-finish-load', () => {
+    win.setTitle(title);
   });
   return win;
 }
