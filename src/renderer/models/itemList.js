@@ -4,7 +4,7 @@ import { getStorage, setStorage } from '../utils/localStorage';
 const ipcRenderer = require('electron').ipcRenderer;
 
 let navList = [{
-  title: '知乎日报-每日',
+  title: '知乎日报热门',
   id: 'dailyZhihu',
 },
 {
@@ -25,7 +25,7 @@ let navList = [{
 }];
 
 let allNavList = [{
-  title: '知乎日报-每日',
+  title: '知乎日报热门',
   id: 'dailyZhihu',
 },
 {
