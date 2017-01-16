@@ -34,6 +34,10 @@ function getTemplate() {
               editPageWin.close();
             } else {
               editPageWin = application.editPage();
+              editPageWin.on('closed', () => {
+                editPageTogle = false;
+                editPageWin = null;
+              });
             }
             editPageTogle = !editPageTogle;
           },
