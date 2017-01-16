@@ -1,4 +1,4 @@
-@value textColor, borderColor, hoverColor, gray from "../utils/variables.css";
+@value textColor, borderColor, blue, gray from "../utils/variables.css";
 
 .nav {
   position: absolute;
@@ -54,7 +54,7 @@
 }
 
 .list-title:hover {
-  color: hoverColor;
+  color: blue;
 }
 
 .list-title--active {

@@ -1,4 +1,4 @@
-@value textColor, hoverColor, gray from "../utils/variables.css";
+@value textColor, blue, gray from "../utils/variables.css";
 
 .editPage {
   /*margin-top: 3em;*/
@@ -31,7 +31,7 @@
 }
 
 .editNavItem:hover {
-  color: hoverColor;
+  color: blue;
 }
 
 .editNavItem--selected {

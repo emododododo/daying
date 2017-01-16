@@ -1,4 +1,4 @@
-@value textColor, hoverColor, gray from "../utils/variables.css";
+@value textColor, blue, gray from "../utils/variables.css";
 
 .list {
   width: 100%;
@@ -19,7 +19,7 @@
 }
 
 .list-item:hover {
-  color: hoverColor;
+  color: blue;
 }
 
 .item--active {
