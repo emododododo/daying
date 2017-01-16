@@ -119,8 +119,11 @@ export default {
           type: 'updateAllNavListSuccess',
           payload: {
             allNavList: data.list,
+            callback: payload.callback,
           },
         });
+      } else if (payload.callback) {
+        payload.callback({ status: 'error' });
       }
     }, { type: 'takeLatest' }],
   },
@@ -168,6 +171,11 @@ export default {
       setStorage('selectedNavList', newNavList);
 
       setStorage('allNavList', action.payload.allNavList);
+
+      if (action.payload.callback) {
+        action.payload.callback({ status: 'success' });
+      }
+
       return { ...state, ...Object.assign({}, state, { allNavList: action.payload.allNavList }) };
     },
   },

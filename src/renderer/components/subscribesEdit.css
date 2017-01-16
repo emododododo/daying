@@ -1,6 +1,8 @@
+@value blue from "../utils/variables.css";
+
 .wrapper {
-  /*display: flex;*/
   text-align: left;
+  position: relative;
 }
 
 .checkBox-wrapper {
@@ -11,7 +13,7 @@
 .confirm-button {
   width: 93px;
   height: 36px;
-  background-color: #40C4FF;
+  background-color: blue;
   border: 0;
   outline: 0;
   margin: 0 auto;
@@ -48,4 +50,18 @@
 .item-content input {
   width: 24px;
   height: 24px;
+}
+
+.update-button {
+  position: absolute;
+  right: 0;
+  bottom: 2px;
+  font-size: 12px;
+  cursor: pointer;
+  opacity: .7;
+}
+
+.update-button:hover {
+  color: blue;
+  opacity: 1;
 }

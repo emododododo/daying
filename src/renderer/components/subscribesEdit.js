@@ -56,21 +56,36 @@ class CheckBox extends React.Component {
         navList: updateList,
       },
     });
-    // console.log(dialog.showMessageBox);
-    // dialog.showMessageBox({
-    //   type: 'info',
-    //   title: 'fafs',
-    //   buttons: ['确定', '取消'],
-    //   message: 'fjsdjafldsjflksjdkl',
-    // }, (response) => {
-    //   console.log(response);
-    // });
     dialog.showErrorBox('✔️', '订阅源更改成功');
   }
 
   navListChanged(newIdList) {
     this.setState({
       slectedIdList: newIdList,
+    });
+  }
+
+  updateSubscribes() {
+    dialog.showMessageBox({
+      type: 'info',
+      buttons: ['确定', '取消'],
+      message: '确定检查并更新订阅源？',
+    }, (response) => {
+      if (response === 0) {
+        this.props.dispatch({
+          type: 'itemList/updateAllNavList',
+          payload: {
+            queryName: 'getList',
+            callback: (res) => {
+              let message = '更新失败❌';
+              if (res.status === 'success') {
+                message = '更新成功✔️';
+              }
+              dialog.showErrorBox(message, '');
+            },
+          },
+        });
+      }
     });
   }
 
@@ -111,6 +126,7 @@ class CheckBox extends React.Component {
           </CheckboxGroup>
         </div>
         <button className={styles['confirm-button']} onClick={this.onConfirm.bind(this)}>确定</button>
+        <div className={styles['update-button']} onClick={this.updateSubscribes.bind(this)}><a>更新订阅源</a></div>
       </div>
     );
   }
