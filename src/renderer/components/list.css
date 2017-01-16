@@ -25,3 +25,8 @@
 .item--active {
   background: gray;
 }
+
+.time {
+  font-size: 10px;
+  margin-top: 2px;
+}

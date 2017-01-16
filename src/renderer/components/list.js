@@ -38,6 +38,7 @@ class List extends React.Component {
                     <p onClick={e => this.onClickHandler(e, item.url, index)}>
                       {item.title}
                     </p>
+                    <p className={styles.time}>{item.date}</p>
                   </li>
                 );
               })
