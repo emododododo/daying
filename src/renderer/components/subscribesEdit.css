@@ -1,0 +1,51 @@
+.wrapper {
+  /*display: flex;*/
+  text-align: left;
+}
+
+.checkBox-wrapper {
+  max-height: 320px;
+  overflow: auto;
+}
+
+.confirm-button {
+  width: 93px;
+  height: 36px;
+  background-color: #40C4FF;
+  border: 0;
+  outline: 0;
+  margin: 0 auto;
+  display: block;
+  margin-top: 10px;
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .24);
+  cursor: pointer;
+  opacity: .8;
+}
+
+.confirm-button:hover {
+  opacity: 1;
+}
+
+.itemList {
+  column-count: 3;
+  margin-left: 84px;
+  font-size: 12px;
+}
+
+.item-content {
+  height: 24px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: 14px;
+}
+
+.item-content input {
+  width: 24px;
+  height: 24px;
+}

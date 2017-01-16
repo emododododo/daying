@@ -1,29 +1,57 @@
+@value textColor, hoverColor, gray from "../utils/variables.css";
 
-.normal {
-  font-family: Georgia, sans-serif;
-  margin-top: 3em;
+.editPage {
+  /*margin-top: 3em;*/
+  width: 100%;
+  height: 100%;
   text-align: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 30px;
+  box-sizing: border-box;
+  background: rgb(238, 238, 238);
+  color: textColor;
+  overflow: hidden;
 }
 
-.title {
-  font-size: 2.5rem;
-  font-weight: normal;
-  letter-spacing: -1px;
+.editNav {
+  background: #fff;
+  width: 124px;
+  border: 1px solid rgba(255, 255, 255, .2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .24);
+  height: auto;
+  padding: 6px 0;
 }
 
-.welcome {
-  height: 328px;
-  background: url(../assets/yay.jpg) no-repeat center 0;
-  background-size: 388px 328px;
+.editNavItem {
+  display: block;
+  padding-left: 10px;
+  box-sizing: border-box;
 }
 
-.list {
-  font-size: 1.2em;
-  margin-top: 1.8em;
-  list-style: none;
-  line-height: 1.5em;
+.editNavItem:hover {
+  color: hoverColor;
 }
 
-.list code {
-  background: #f7f7f7;
+.editNavItem--selected {
+  background-color: gray;
+}
+
+.editNav p {
+  height: 38px;
+  line-height: 38px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.editContent {
+  background: #fff;
+  width: 490px;
+  max-height: 388px;
+  overflow: hidden;
+  padding: 10px 30px;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, .2);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .24);
 }
