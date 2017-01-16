@@ -55,7 +55,6 @@ class Nav extends React.Component {
     const isSelected = this.state.isSelected;
     const isFolded = this.state.isFolded;
     const navList = this.props.navList;
-    console.log(this.props);
     let listClassName = '';
     let arrowActive = '';
     let borderArrowActive = '';
