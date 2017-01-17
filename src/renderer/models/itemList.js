@@ -153,7 +153,7 @@ export default {
             const resultI = objI;
             resultI[itemI.id] = itemI.id;
             return resultI;
-          });
+          }, {});
           return Object.assign({}, result, dataObj);
         }
 
