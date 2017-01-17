@@ -1,0 +1,10 @@
+.about-wrapper {
+  text-align: left;
+  font-size: 14px;
+  width: 120px;
+}
+
+.row {
+  column-count: 2;
+  margin: 20px 0;
+}
