@@ -15,10 +15,10 @@ class CheckBox extends React.Component {
 
   onConfirm() {
     // 限制订阅数量
-    // if (this.state.slectedIdList.length <= 0 || this.state.slectedIdList.length > 10) {
-      // dialog.showErrorBox('❌', `您只能订阅 1~10 个信息源，请重新选择。但您选择了${this.state.slectedIdList.length}个信息源`);
-      // return;
-    // }
+    if (this.state.slectedIdList.length <= 0 || this.state.slectedIdList.length > 15) {
+      dialog.showErrorBox('❌', `您只能订阅 1~15 个信息源，请重新选择。但您选择了${this.state.slectedIdList.length}个信息源`);
+      return;
+    }
 
     const objList = {};
     this.state.slectedIdList.forEach((item) => {
