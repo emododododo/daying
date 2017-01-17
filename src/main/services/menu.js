@@ -1,33 +1,40 @@
 import { Menu } from 'electron';
+import is from 'electron-is';
 import log from 'electron-log';
 import * as application from './application';
 
 let editPageWin = '';
 let editPageTogle = false;
 function getTemplate() {
-  return [
+  const config = [
     {
       label: 'MyApp',
       submenu: [
-        { role: 'hide' },
-        { role: 'hideothers' },
-        { role: 'unhide' },
+        { label: '隐藏大鹰', role: 'hide' },
+        { label: '隐藏其它', role: 'hideothers' },
+        { label: '展示所有', role: 'unhide' },
         { type: 'separator' },
-        { role: 'quit' },
+        { label: '关闭窗口', role: 'close' },
+        { label: '重新加载', role: 'reload' },
+        { label: '全屏显示', role: 'togglefullscreen' },
+        { type: 'separator' },
+        { label: '退出程序', accelerator: 'CmdOrCtrl+Q', role: 'quit' },
       ],
     },
     {
-      label: '配置',
+      label: '操作',
       submenu: [
-        { label: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
-        { label: 'Redo', accelerator: 'Shift+CmdOrCtrl+Z', selector: 'redo:' },
-        { type: 'separator' },
-        { label: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
-        { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
-        { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
-        { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
+        { label: '剪切', accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
+        { label: '复制', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
+        { label: '粘贴', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
+        { label: '全选', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
+      ],
+    },
+    {
+      label: '设置',
+      submenu: [
         {
-          label: '配置',
+          label: '设置',
           click: () => {
             // 开关配置页面
             if (editPageTogle) {
@@ -44,24 +51,18 @@ function getTemplate() {
         },
       ],
     },
-    {
-      label: 'View',
-      submenu: [
-        { role: 'reload' },
-        { role: 'toggledevtools' },
-        { type: 'separator' },
-        { role: 'togglefullscreen' },
-      ],
-    },
-    {
-      role: 'window',
-      label: 'Window',
-      submenu: [
-        { role: 'minimize' },
-        { role: 'close' },
-      ],
-    },
   ];
+
+  if (is.dev()) {
+    config.push({
+      label: 'DEV',
+      submenu: [
+        { role: 'toggledevtools' },
+      ],
+    });
+  }
+
+  return config;
 }
 
 export function init() {

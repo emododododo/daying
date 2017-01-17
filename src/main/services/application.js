@@ -15,7 +15,7 @@ export function editPage() {
   const win = create({
     width: 693,
     height: 468,
-    title: '配置',
+    title: '设置',
     hasShadow: true,
     fullscreenable: false,
     resizable: false,
