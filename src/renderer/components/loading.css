@@ -59,3 +59,47 @@
 .loading .right {
   display: block;
 }
+
+.loading-bar {
+  position: fixed;
+  width: 0;
+  opacity: 0;
+  height: 2px;
+  top: 0;
+  background-color: #717171;
+}
+
+.loading.loading-bar {
+  animation: bar_loading 1.5s forwards;
+}
+
+.finished.loading-bar {
+  animation: bar_finished 1s forwards;
+}
+
+@keyframes bar_loading {
+  from {
+    width: 0;
+    opacity: 1;
+  }
+	to {
+    width: 40%;
+    opacity: 1;
+  }
+}
+
+@keyframes bar_finished {
+  0% {
+    width: 40%;
+    opacity: 1;
+  }
+	99% {
+    width: 100%;
+    opacity: 1;
+  }
+
+  100% {
+    width: 100%;
+    opacity: 0;
+  }
+}
