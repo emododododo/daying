@@ -5,8 +5,11 @@ import Loading from './loading';
 const openExternal = require('electron').remote.shell.openExternal;
 const arrowLeft = require('../assets/arrow_left.png');
 const reload = require('../assets/reload.png');
+const mobile = require('../assets/mobile.png');
 const browser = require('../assets/browser.png');
 const error = require('../assets/error.png');
+const QRCode = require('qrcode.react');
+
 
 class Webview extends React.Component {
 
@@ -18,6 +21,7 @@ class Webview extends React.Component {
       isLoading: false,
       crashed: false,
       errorCode: '',
+      qrcodeToggle: false,
     };
   }
 
@@ -103,6 +107,12 @@ class Webview extends React.Component {
     }
   }
 
+  onMobile() {
+    this.setState({
+      qrcodeToggle: !this.state.qrcodeToggle,
+    });
+  }
+
   render() {
     const url = '#';
     const crashedClassName = this.state.crashed ? styles['crashed--active'] : styles.crashed;
@@ -110,13 +120,18 @@ class Webview extends React.Component {
     const goForwardClassNames = this.state.canGoForward ? `${styles.goForward} ${styles.canGoForward}` : styles.goForward;
     const reloadClassNames = `${styles.reload} ${styles['icon-active']}`;
     const browserClassNames = `${styles.browser} ${styles['icon-active']}`;
+    const mobileClassNames = `${styles.mobile} ${styles['icon-active']}`;
+    const qrcodeClassNames = this.state.qrcodeToggle ? `${styles.qrcode} ${styles['qrcode-active']}` : styles.qrcode;
     const onBrowser = this.onBrowser.bind(this);
+    const onMobile = this.onMobile.bind(this);
+    const qrcodeUrl = this.props.url || '';
     return (
       <Loading bar isLoading={this.state.isLoading} className={styles.wrapper}>
         <div className={styles['webview-bar']}>
           <a onClick={this.onGoBack} className={styles['goBack-wrapper']}><img className={goBackClassNames} src={arrowLeft} alt="" /></a>
           <a onClick={this.onGoForward} className={styles['goForward-wrapper']}><img className={goForwardClassNames} src={arrowLeft} alt="" /></a>
           <a onClick={this.onReload} className={styles['reload-wrapper']}><img className={reloadClassNames} src={reload} alt="" /></a>
+          <a onClick={onMobile} className={styles['mobile-wrapper']}><img className={mobileClassNames} src={mobile} alt="" /></a>
           <a onClick={onBrowser} className={styles['browser-wrapper']}><img className={browserClassNames} src={browser} alt="" /></a>
         </div>
         <webview className={styles.webview} id="foo" src={url} />
@@ -125,6 +140,9 @@ class Webview extends React.Component {
             <img className={goBackClassNames} src={error} alt="" />
             <span>出现错误 {this.state.errorCode}</span>
           </div>
+        </div>
+        <div className={qrcodeClassNames}>
+          <QRCode value={qrcodeUrl} />
         </div>
       </Loading>
     );

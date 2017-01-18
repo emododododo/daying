@@ -64,6 +64,19 @@
   cursor: pointer;
 }
 
+.mobile-wrapper {
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  right: 50px;
+}
+
+.mobile {
+  height: 20px;
+}
+
 .goBack-wrapper {
   left: 18px;
 }
@@ -117,4 +130,21 @@
 .crashed-content span {
   font-size: 14px;
   color: textColor;
+}
+
+.qrcode {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 100;
+  display: none;
+}
+
+.qrcode-active {
+  display: block;
+}
+
+.qrcode canvas {
+  position: absolute;
+  right: 0;
 }
