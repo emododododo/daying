@@ -1,10 +1,11 @@
 import React from 'react';
-import { Checkbox, CheckboxGroup } from 'react-checkbox-group';
+import Checkbox from 'material-ui/Checkbox';
+import RaisedButton from 'material-ui/RaisedButton';
 import styles from './subscribesEdit.css';
 
 const dialog = require('electron').remote.dialog;
 
-class CheckBox extends React.Component {
+class SubscribesEdit extends React.Component {
   constructor(props) {
     super(props);
     const slectedIdList = props.navList.map(item => item.id);
@@ -88,48 +89,45 @@ class CheckBox extends React.Component {
       }
     });
   }
-
   render() {
     const allNavList = this.props.allNavList;
     return (
       <div className={styles.wrapper}>
         <div className={styles['checkBox-wrapper']}>
-          <CheckboxGroup name="navList" value={this.state.slectedIdList} onChange={this.navListChanged.bind(this)}>
-            {
-              allNavList.map((item, index) => {
-                // itemListJSX
-                let itemListJSX = (
-                  <div className={styles['item-content']}>
-                    <Checkbox value={item.id} />
-                    <span>热门</span>
-                  </div>
-                );
-                if (item.data && item.data.length > 0) {
-                  itemListJSX = item.data.map((itemI, indexI) => {
-                    return (
-                      <div key={indexI} className={styles['item-content']}>
-                        <Checkbox value={itemI.id} />
-                        <span>{itemI.title}</span>
-                      </div>
-                    );
-                  });
-                }
+          {
+            allNavList.map((item, index) => {
+              // itemListJSX
+              let itemListJSX = (
+                <div className={styles['item-content']}>
+                  <Checkbox label="热门" />
+                </div>
+              );
+              if (item.data && item.data.length > 0) {
+                itemListJSX = item.data.map((itemI, indexI) => {
+                  return (
+                    <div key={indexI} className={styles['item-content']}>
+                      <Checkbox label={itemI.title} />
+                    </div>
+                  );
+                });
+              }
 
-                return (
-                  <div className={styles.wrapper} key={index}>
-                    <div className={styles.title}>{item.title}</div>
-                    <div className={styles.itemList}>{itemListJSX}</div>
-                  </div>
-                );
-              })
-            }
-          </CheckboxGroup>
+              return (
+                <div className={styles.wrapper} key={index}>
+                  <div className={styles.title}>{item.title}</div>
+                  <div className={styles.itemList}>{itemListJSX}</div>
+                </div>
+              );
+            })
+          }
         </div>
-        <button className={styles['confirm-button']} onClick={this.onConfirm.bind(this)}>确定</button>
+        <div className={styles['confirm-button']} onClick={this.onConfirm.bind(this)}>
+          <RaisedButton label="确定" primary className={styles['confirm-button']} />
+        </div>
         <div className={styles['update-button']} onClick={this.updateSubscribes.bind(this)}><a>更新订阅源</a></div>
       </div>
     );
   }
 }
 
-export default CheckBox;
+export default SubscribesEdit;

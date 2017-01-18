@@ -64,7 +64,6 @@
     "qrcode.react": "^0.6.1",
     "qs": "^6.2.0",
     "react": "^15.4.0",
-    "react-checkbox-group": "^3.0.1",
     "react-dom": "^15.4.0",
     "react-tap-event-plugin": "^2.0.1",
     "style-loader": "^0.13.1",

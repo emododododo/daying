@@ -3,6 +3,8 @@
 .wrapper {
   text-align: left;
   position: relative;
+  /*margin: 20px 0;*/
+  margin-bottom: 22px;
 }
 
 .checkBox-wrapper {
@@ -10,20 +12,16 @@
   overflow: auto;
 }
 
+.checkBox-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+
 .confirm-button {
   width: 93px;
   height: 36px;
-  background-color: blue;
-  border: 0;
-  outline: 0;
   margin: 0 auto;
-  display: block;
-  margin-top: 10px;
-  color: #fff;
   font-size: 14px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .24);
-  cursor: pointer;
-  opacity: .8;
 }
 
 .confirm-button:hover {
@@ -31,12 +29,14 @@
 }
 
 .itemList {
-  column-count: 3;
-  margin-left: 84px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 35px;
   font-size: 12px;
 }
 
 .item-content {
+  width: 170px;
   height: 24px;
   line-height: 24px;
   display: flex;
@@ -45,6 +45,7 @@
 
 .title {
   font-size: 14px;
+  margin-bottom: 12px;
 }
 
 .item-content input {

@@ -18,9 +18,6 @@
 .editNav {
   background: #fff;
   width: 124px;
-  border: 1px solid rgba(255, 255, 255, .2);
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .24);
-  height: auto;
   padding: 6px 0;
 }
 
@@ -50,7 +47,7 @@
   width: 490px;
   max-height: 388px;
   overflow: hidden;
-  padding: 10px 30px;
+  padding: 20px 30px;
   box-sizing: border-box;
   border: 1px solid rgba(255, 255, 255, .2);
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .24);
