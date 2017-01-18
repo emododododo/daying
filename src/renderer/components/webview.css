@@ -133,18 +133,12 @@
 }
 
 .qrcode {
-  width: 100%;
-  height: 100%;
   position: absolute;
   z-index: 100;
   display: none;
+  right: 0;
 }
 
 .qrcode-active {
   display: block;
-}
-
-.qrcode canvas {
-  position: absolute;
-  right: 0;
 }

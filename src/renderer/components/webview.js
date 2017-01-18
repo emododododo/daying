@@ -10,7 +10,6 @@ const browser = require('../assets/browser.png');
 const error = require('../assets/error.png');
 const QRCode = require('qrcode.react');
 
-
 class Webview extends React.Component {
 
   constructor() {
@@ -96,6 +95,7 @@ class Webview extends React.Component {
     webviewElement.clearHistory();
     this.setState({
       canGoBack: webviewElement.canGoBack(),
+      qrcodeToggle: false,
     });
     webviewElement.loadURL(nextProps.url);
   }
