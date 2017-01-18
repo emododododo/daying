@@ -8,6 +8,8 @@
   "scripts": {
     "start": "electron app/dist/main",
     "Xpostinstall": "cd app && tnpm i && cd .. && npm run rebuild",
+    "dev:server": "webpack-dev-server --config webpack.config.dev.babel.js",
+    "dev:main": "webpack -w --config ./webpack.config.main.babel.js",
     "dev": "webpack-dev-server --config webpack.config.dev.babel.js & webpack -w --config ./webpack.config.main.babel.js",
     "clean": "chmod u+x dist && rm -rf node_modules app/node_modules dist app/dist",
     "build": "NODE_ENV=production webpack",
@@ -64,6 +66,7 @@
     "react": "^15.4.0",
     "react-checkbox-group": "^3.0.1",
     "react-dom": "^15.4.0",
+    "react-tap-event-plugin": "^2.0.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3",
