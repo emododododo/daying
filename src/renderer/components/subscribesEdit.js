@@ -8,56 +8,33 @@ const dialog = require('electron').remote.dialog;
 class SubscribesEdit extends React.Component {
   constructor(props) {
     super(props);
-    const slectedIdList = props.navList.map(item => item.id);
     this.state = {
-      slectedIdList,
+      slectedIdList: props.navList,
     };
   }
 
   onConfirm() {
     // 限制订阅数量
-    if (this.state.slectedIdList.length <= 0 || this.state.slectedIdList.length > 15) {
-      dialog.showErrorBox('❌', `您只能订阅 1~15 个信息源，请重新选择。但您选择了${this.state.slectedIdList.length}个信息源`);
-      return;
-    }
-
-    const objList = {};
-    this.state.slectedIdList.forEach((item) => {
-      objList[item] = item;
-    });
-
-    // 处理选中数据
-    const updateList = this.props.allNavList.reduce((arr, item) => {
-      let result = arr;
-      if (item.data && item.data.length > 0) {
-        const resultJ = item.data.reduce((arrI, itemI) => {
-          const resultI = arrI;
-          if (objList[itemI.id]) {
-            resultI.push({
-              id: itemI.id,
-              title: itemI.title,
-            });
-          }
-          return resultI;
-        }, []);
-        result = result.concat(resultJ);
-      } else if (objList[item.id]) {
-        result.push({
-          id: item.id,
-          title: item.title,
-        });
-      }
-      return result;
-    }, []);
-
+    // if (this.state.slectedIdList.length <= 0 || this.state.slectedIdList.length > 15) {
+    //   dialog.showErrorBox(
+    //     '<U+274C>',
+    //     `您只能订阅 1~15 个信息源，请重新选择。但您选择了${this.state.slectedIdList.length}个信息源`,
+    //   );
+    //   return;
+    // }
     // Dispatch updateNavList action
     this.props.dispatch({
       type: 'itemList/updateNavList',
       payload: {
-        navList: updateList,
+        navList: this.state.slectedIdList,
       },
     });
-    dialog.showErrorBox('✔️', '订阅源更改成功');
+    dialog.showMessageBox({
+      type: 'info',
+      title: '✔️',
+      buttons: ['确定'],
+      message: '订阅源更改成功',
+    });
   }
 
   navListChanged(newIdList) {
@@ -89,6 +66,52 @@ class SubscribesEdit extends React.Component {
       }
     });
   }
+
+  handleCheck(isInputChecked, checkedItem) {
+    let newSlectedIdList = this.state.slectedIdList;
+    const idObj = this.state.slectedIdList.reduce((obj, item) => {
+      const result = obj;
+      result[item.id] = item.id;
+      return result;
+    }, {});
+
+    if (isInputChecked && !idObj[checkedItem.id]) {
+      newSlectedIdList.push(checkedItem);
+    } else if (!isInputChecked && idObj[checkedItem.id]) {
+      newSlectedIdList = newSlectedIdList.reduce((arr, item) => {
+        const result = arr;
+        if (item.id !== checkedItem.id) {
+          result.push(item);
+        }
+        return result;
+      }, []);
+    }
+
+    this.setState({
+      slectedIdList: newSlectedIdList,
+    });
+  }
+
+  checkBoxJSX(item, single) {
+    const idObj = this.state.slectedIdList.reduce((obj, itemI) => {
+      const result = obj;
+      result[itemI.id] = itemI.id;
+      return result;
+    }, {});
+
+    const checked = !!idObj[item.id];
+    const label = single ? '热门' : item.title;
+    return (
+      <Checkbox
+        label={label}
+        checked={checked}
+        onCheck={(e, isInputChecked) => {
+          this.handleCheck(isInputChecked, item);
+        }}
+      />
+    );
+  }
+
   render() {
     const allNavList = this.props.allNavList;
     return (
@@ -99,14 +122,14 @@ class SubscribesEdit extends React.Component {
               // itemListJSX
               let itemListJSX = (
                 <div className={styles['item-content']}>
-                  <Checkbox label="热门" />
+                  { this.checkBoxJSX(item, true) }
                 </div>
               );
               if (item.data && item.data.length > 0) {
                 itemListJSX = item.data.map((itemI, indexI) => {
                   return (
                     <div key={indexI} className={styles['item-content']}>
-                      <Checkbox label={itemI.title} />
+                      { this.checkBoxJSX(itemI) }
                     </div>
                   );
                 });

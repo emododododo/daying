@@ -13,16 +13,15 @@ export function init() {
 
 export function editPage() {
   const win = create({
-    width: 693,
-    height: 468,
+    width: 720,
+    height: 520,
     title: '设置',
     hasShadow: true,
-    fullscreenable: false,
-    resizable: false,
-    alwaysOnTop: true,
-    minimizable: false,
-    maximizable: false,
-    fullscreen: false,
+    // fullscreenable: false,
+    // resizable: false,
+    // minimizable: false,
+    // maximizable: false,
+    // fullscreen: false,
   });
   win.loadURL(`${getPath()}#/editPage`);
   return win;
