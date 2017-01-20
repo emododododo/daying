@@ -59,7 +59,11 @@ class SubscribesEdit extends React.Component {
               if (res.status === 'success') {
                 message = '更新成功✔️';
               }
-              dialog.showErrorBox(message, '');
+              dialog.showMessageBox({
+                type: 'info',
+                buttons: ['确定'],
+                message,
+              });
             },
           },
         });
