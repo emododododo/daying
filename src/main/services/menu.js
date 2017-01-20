@@ -5,11 +5,20 @@ import * as application from './application';
 
 let editPageWin = '';
 let editPageTogle = false;
+
 function getTemplate() {
-  const config = [
-    {
-      label: 'MyApp',
-      submenu: [
+  let myAppSubmenu = [
+    { label: '重新加载', role: 'reload' },
+    { label: '全屏显示', role: 'togglefullscreen' },
+    { type: 'separator' },
+    { label: '退出程序', accelerator: 'CmdOrCtrl+Q', role: 'quit' },
+  ];
+
+  switch (process.platform) {
+    case 'win32':
+      break;
+    case 'darwin':
+      myAppSubmenu = [
         { label: '隐藏大鹰', role: 'hide' },
         { label: '隐藏其它', role: 'hideothers' },
         { label: '展示所有', role: 'unhide' },
@@ -19,7 +28,17 @@ function getTemplate() {
         { label: '全屏显示', role: 'togglefullscreen' },
         { type: 'separator' },
         { label: '退出程序', accelerator: 'CmdOrCtrl+Q', role: 'quit' },
-      ],
+      ];
+      break;
+    case 'linux':
+      break;
+    default:
+  }
+
+  const config = [
+    {
+      label: 'MyApp',
+      submenu: myAppSubmenu,
     },
     {
       label: '操作',
