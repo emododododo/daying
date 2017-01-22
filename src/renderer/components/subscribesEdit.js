@@ -33,7 +33,8 @@ class SubscribesEdit extends React.Component {
       type: 'info',
       title: '✔️',
       buttons: ['确定'],
-      message: '订阅源更改成功',
+      message: '更改订阅源',
+      detail: '订阅源更改成功!',
     });
   }
 
@@ -47,7 +48,8 @@ class SubscribesEdit extends React.Component {
     dialog.showMessageBox({
       type: 'info',
       buttons: ['确定', '取消'],
-      message: '确定检查并更新订阅源？',
+      message: '更新订阅源',
+      detail: '确定检查并更新订阅源？',
     }, (response) => {
       if (response === 0) {
         this.props.dispatch({
@@ -55,14 +57,15 @@ class SubscribesEdit extends React.Component {
           payload: {
             queryName: 'getList',
             callback: (res) => {
-              let message = '更新失败❌';
+              let detail = '更新失败❌';
               if (res.status === 'success') {
-                message = '更新成功✔️';
+                detail = '更新成功✔️';
               }
               dialog.showMessageBox({
                 type: 'info',
                 buttons: ['确定'],
-                message,
+                message: '更新结果',
+                detail,
               });
             },
           },
