@@ -14,8 +14,8 @@
   },
   "darwin-x64-prod": {
     "readme": "Second Release",
-    "update": "https://github.com/megahertz/electron-simple-updater/releases/download/darwin-x64-prod-v0.0.2/release.json",
-    "install": "https://github.com/megahertz/electron-simple-updater/releases/download/darwin-x64-prod-v0.0.2/Simple.Updater.Example-0.0.2.dmg",
+    "update": "https://github.com/emododododo/daying/releases/download/0.0.1/release.json",
+    "install": "https://github.com/emododododo/daying/releases/download/0.0.1/daying-0.0.1-mac.zip",
     "version": "0.0.2"
   }
 }
