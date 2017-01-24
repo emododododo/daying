@@ -142,3 +142,14 @@
 .qrcode-active {
   display: block;
 }
+
+.testUpdate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  z-index: 1000;
+}
