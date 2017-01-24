@@ -9,6 +9,25 @@ const mobile = require('../assets/mobile.png');
 const browser = require('../assets/browser.png');
 const error = require('../assets/error.png');
 const QRCode = require('qrcode.react');
+const updater = require('electron').remote.require('electron-simple-updater');
+
+updater.on('update-available', (meta) => {
+  console.log('[updater] update avaiable', meta.version);
+  updater.downloadUpdate();
+});
+updater.on('update-downloading', () => {
+  console.log('update-downloading');
+});
+updater.on('update-downloaded', () => {
+  console.log('update-downloaded');
+  if (window.confirm('The app has been updated. Do you like to restart it now?')) {
+    updater.quitAndInstall();
+  }
+});
+
+updater.on('error', (err) => {
+  console.log(err, 'error');
+});
 
 class Webview extends React.Component {
 
@@ -113,6 +132,10 @@ class Webview extends React.Component {
     });
   }
 
+  testUpdate() {
+    updater.checkForUpdates();
+  }
+
   render() {
     const url = '#';
     const crashedClassName = this.state.crashed ? styles['crashed--active'] : styles.crashed;
@@ -144,6 +167,7 @@ class Webview extends React.Component {
         <div className={qrcodeClassNames}>
           <QRCode value={qrcodeUrl} />
         </div>
+        <button className={styles.testUpdate} onClick={this.testUpdate}>testUpdate</button>
       </Loading>
     );
   }
