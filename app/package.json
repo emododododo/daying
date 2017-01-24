@@ -1,16 +1,20 @@
 {
-  "name": "eagle",
-  "version": "0.1.0",
-  "productName": "大鹰",
+  "name": "daying",
+  "version": "0.0.1",
+  "productName": "daying",
   "description": "Yet another boilerplate for dva.",
   "main": "dist/main.js",
   "author": {
     "name": "smackgg&emodo",
     "email": "xysmackdown@gmail.com"
   },
+  "updater": {
+    "url": "https://raw.githubusercontent.com/emododododo/daying/master/update.json"
+  },
   "dependencies": {
     "electron-config": "^0.2.1",
     "electron-is": "^2.3.0",
-    "electron-log": "^1.2.2"
+    "electron-log": "^1.2.2",
+    "electron-simple-updater": "^1.2.0"
   }
 }
