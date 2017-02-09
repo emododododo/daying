@@ -15,13 +15,13 @@ class SubscribesEdit extends React.Component {
 
   onConfirm() {
     // 限制订阅数量
-    // if (this.state.slectedIdList.length <= 0 || this.state.slectedIdList.length > 15) {
-    //   dialog.showErrorBox(
-    //     '<U+274C>',
-    //     `您只能订阅 1~15 个信息源，请重新选择。但您选择了${this.state.slectedIdList.length}个信息源`,
-    //   );
-    //   return;
-    // }
+    if (this.state.slectedIdList.length <= 0 || this.state.slectedIdList.length > 15) {
+      dialog.showErrorBox(
+        '<U+274C>',
+        `您只能订阅 1~15 个信息源，请重新选择。您选择了${this.state.slectedIdList.length}个信息源`,
+      );
+      return;
+    }
     // Dispatch updateNavList action
     this.props.dispatch({
       type: 'itemList/updateNavList',
