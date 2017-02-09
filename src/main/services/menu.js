@@ -72,14 +72,14 @@ function getTemplate() {
     },
   ];
 
-  // if (is.dev()) {
-  config.push({
-    label: 'DEV',
-    submenu: [
-      { role: 'toggledevtools' },
-    ],
-  });
-  // }
+  if (is.dev()) {
+    config.push({
+      label: 'DEV',
+      submenu: [
+        { role: 'toggledevtools' },
+      ],
+    });
+  }
 
   return config;
 }
