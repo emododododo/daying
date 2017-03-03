@@ -2,7 +2,7 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import is from 'electron-is';
 import { join } from 'path';
 import log from 'electron-log';
-import updater from 'electron-simple-updater';
+// import updater from 'electron-simple-updater';
 import * as application from './services/application';
 import * as window from './services/window';
 import * as menu from './services/menu';
@@ -16,10 +16,10 @@ if (is.dev()) {
   require('electron-debug')(); // eslint-disable-line global-require
 }
 
-updater.init({
-  checkUpdateOnStart: false,
-  autoDownload: true,
-});
+// updater.init({
+//   checkUpdateOnStart: false,
+//   autoDownload: true,
+// });
 
 app.on('ready', () => {
   log.info('(main/index) app ready');
