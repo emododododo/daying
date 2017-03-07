@@ -18,7 +18,8 @@
     "rebuild": "electron-rebuild -m ./app/node_modules",
     "pack": "npm run build && npm run rebuild && build",
     "pack:dir": "npm run build && npm run rebuild && build --dir",
-    "pack:justBuild": "build --dir"
+    "pack:justBuild": "build --dir",
+    "precommit": "npm run lint"
   },
   "build": {
     "appId": "com.dayang.dva-boilerplate",
