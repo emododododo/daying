@@ -11,18 +11,15 @@
 > 此应用开发源码及数据仅供学习，所有数据并未获得官方授权。内容涉及掘金、知乎等。虽然最终都会跳转到原文地址，但获取与共享的行为或有侵犯知识权益的嫌疑。若被告知停止使用与共享，本人将及时删除相关内容。所有 API 以及源码 **仅供学习交流使用，请勿用作商业用途**。请您知悉相关情况，遵守相关协议。
 
 ---
-## 界面
-> 界面以及操作大概如下图。可以扫描二维码将文章分享至微信，也可以在浏览器中打开。
+## 演示
+> 应用界面以及操作大概如下图。
 
-<div align="center">
-  ![leancloud](http://7xkj1z.com1.z0.glb.clouddn.com/daying_display.gif)
-</div>
+[主界面.gif](http://7xkj1z.com1.z0.glb.clouddn.com/daying_display.gif)
 
-> 在设置里面可以添加订阅源。
+> 在设置里可以添加更改订阅源。
 
-<div align="center">
-  ![leancloud](http://7xkj1z.com1.z0.glb.clouddn.com/daying_config.gif)
-</div>
+[配置界面.gif](http://7xkj1z.com1.z0.glb.clouddn.com/daying_display1.gif)
+
 ## 开发
 
 > 开发环境
@@ -55,9 +52,9 @@ $ npm run pack
 > 后台源码地址
 
 [daying-backend](https://github.com/emododododo/daying-backend)
-## 开发计划
+## 计划
 - [x] 远程热更新订阅源；
-- [x] ；
+- [x] 添加手机扫描二维码分享文章；
 - [ ] UI 优化；
 - [ ] 添加更多可用订阅源;
 - [ ] 应用的自动更新；
