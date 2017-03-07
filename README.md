@@ -14,11 +14,11 @@
 ## 演示
 > 应用界面以及操作大概如下图。
 
-[主界面.gif](http://7xkj1z.com1.z0.glb.clouddn.com/daying_display.gif)
+[主界面.gif](http://7xkj1z.com1.z0.glb.clouddn.com/daying_display1.gif)
 
 > 在设置里可以添加更改订阅源。
 
-[配置界面.gif](http://7xkj1z.com1.z0.glb.clouddn.com/daying_display1.gif)
+[配置界面.gif](http://7xkj1z.com1.z0.glb.clouddn.com/daying_config.gif)
 
 ## 开发
 
