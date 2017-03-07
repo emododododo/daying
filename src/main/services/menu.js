@@ -6,6 +6,15 @@ import * as application from './application';
 let editPageWin = '';
 let editPageTogle = false;
 
+function openEditPage() {
+  editPageTogle = false;
+  editPageWin = application.editPage();
+  editPageWin.on('closed', () => {
+    editPageTogle = false;
+    editPageWin = null;
+  });
+}
+
 function getTemplate() {
   let myAppSubmenu = [
     { label: '重新加载', role: 'reload' },
@@ -57,13 +66,15 @@ function getTemplate() {
           click: () => {
             // 开关配置页面
             if (editPageTogle) {
-              editPageWin.close();
+              try {
+                editPageWin.close();
+              } catch (err) {
+                if (err) {
+                  openEditPage();
+                }
+              }
             } else {
-              editPageWin = application.editPage();
-              editPageWin.on('closed', () => {
-                editPageTogle = false;
-                editPageWin = null;
-              });
+              openEditPage();
             }
             editPageTogle = !editPageTogle;
           },
