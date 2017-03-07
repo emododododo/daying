@@ -1,7 +1,7 @@
 {
   "name": "daying",
   "version": "0.0.1",
-  "productName": "daying",
+  "productName": "大鹰",
   "description": "Yet another boilerplate for dva.",
   "main": "dist/main.js",
   "author": {

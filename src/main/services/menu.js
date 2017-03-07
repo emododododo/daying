@@ -37,7 +37,7 @@ function getTemplate() {
 
   const config = [
     {
-      label: 'MyApp',
+      label: '大鹰',
       submenu: myAppSubmenu,
     },
     {
