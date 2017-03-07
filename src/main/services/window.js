@@ -29,7 +29,7 @@ export function getCount() {
 export function getPath() {
   let path = `file://${join($dirname, '..', 'pages')}/main.html`;
   if (is.dev()) {
-    const { serverIp, serverPort } = require('../../../webpack.config.dev.babel.js'); // eslint-disable-line global-require
+    const { serverIp, serverPort } = require('../../../webpack.config.renderer.babel.js'); // eslint-disable-line global-require
     path = `http://${serverIp}:${serverPort}/main-dev.html`;
   }
   return path;
