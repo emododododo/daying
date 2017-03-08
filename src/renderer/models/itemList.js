@@ -6,43 +6,41 @@ const ipcRenderer = require('electron').ipcRenderer;
 let navList = [{
   title: '知乎日报热门',
   id: 'dailyZhihu',
-},
-{
+}, {
+  title: '简书',
+  id: 'jianshu',
+}, {
+  title: '腾讯篮球',
+  id: 'qqSports_basket',
+}, {
+  title: '日常心理学',
+  id: 'dailyZhihu_theme_13',
+}, {
   title: '博客园',
   id: 'cnblogs',
 }, {
-  title: 'csdn',
-  id: 'csdn',
-}, {
-  title: '湾区',
-  id: 'wanqu',
-}, {
-  title: 'IT之家',
-  id: 'ithome',
-}, {
-  title: 'solidot奇客',
-  id: 'solidot',
+  title: '什么值得买精选',
+  id: 'smzdm',
 }];
 
 let allNavList = [{
   title: '知乎日报热门',
   id: 'dailyZhihu',
-},
-{
+}, {
+  title: '简书',
+  id: 'jianshu',
+}, {
+  title: '腾讯篮球',
+  id: 'qqSports_basket',
+}, {
+  title: '日常心理学',
+  id: 'dailyZhihu_theme_13',
+}, {
   title: '博客园',
   id: 'cnblogs',
 }, {
-  title: 'csdn',
-  id: 'csdn',
-}, {
-  title: '湾区',
-  id: 'wanqu',
-}, {
-  title: 'IT之家',
-  id: 'ithome',
-}, {
-  title: 'solidot奇客',
-  id: 'solidot',
+  title: '什么值得买精选',
+  id: 'smzdm',
 }];
 
 // Read selectedNavList for localStorage
